@@ -14,6 +14,7 @@
     <description>Unified dependency plugin management for Seeho microservices</description>
     <modules>
         <module>seeho-craft</module>
+        <module>seeho-aurora</module>
     </modules>
 
     <!-- ========== 全局属性（版本统一在这里改） ========== -->
@@ -27,6 +28,7 @@
         <spring.boot.version>3.3.4</spring.boot.version>
         <spring.cloud.version>2023.0.3</spring.cloud.version> <!-- Leyton SR3 -->
         <spring.cloud.alibaba.version>2023.0.3.2</spring.cloud.alibaba.version>
+        <spring.boot.start.web.version>3.5.6</spring.boot.start.web.version>
 
         <!-- 数据持久层 -->
         <mybatis.plus.version>3.5.4</mybatis.plus.version>
@@ -47,12 +49,22 @@
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
         <spring.boot.maven.plugin.version>${spring.boot.version}</spring.boot.maven.plugin.version>
+
+        <craft.version>1.0.0-SNAPSHOT</craft.version>
     </properties>
 
 
     <!-- ========== 依赖管理区（只在这里定版本；子模块不再写版本） ========== -->
     <dependencyManagement>
         <dependencies>
+
+            <!-- 二方包版本控制 -->
+            <!-- 公共模块版本 -->
+            <dependency>
+                <groupId>com.seeho</groupId>
+                <artifactId>seeho-craft</artifactId>
+                <version>${craft.version}</version>
+            </dependency>
 
             <!-- ********** A. 平台 / BOM（必须最先导入） ********** -->
             <!-- Spring Boot BOM：管理 spring-boot-starter* 等版本 -->
@@ -85,27 +97,26 @@
 
             <!-- ********** B. Web & 网关 / 通信 ********** -->
             <!-- 说明：这些 starter 的具体版本由 BOM 管理，这里只列出坐标，子模块直接使用即可。 -->
-             <dependency>
-                 <groupId>org.springframework.boot</groupId>
-                 <artifactId>spring-boot-starter-web</artifactId>
-             </dependency>
-             <dependency>
-                 <groupId>org.springframework.cloud</groupId>
-                 <artifactId>spring-cloud-starter-gateway</artifactId>
-             </dependency>
-             <dependency>
-                 <groupId>org.springframework.cloud</groupId>
-                 <artifactId>spring-cloud-starter-openfeign</artifactId>
-             </dependency>
-             <dependency>
-                 <groupId>org.springframework.cloud</groupId>
-                 <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.start.web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+            </dependency>
 
 
             <!-- ********** C. 服务注册/配置（来自 Spring Cloud Alibaba BOM） ********** -->
-
-
 
 
             <!-- ********** D. 数据持久层（统一在此集中管理版本） ********** -->

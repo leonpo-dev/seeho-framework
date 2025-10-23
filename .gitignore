@@ -23,8 +23,5 @@
 hs_err_pid*
 replay_pid*
 /.idea/*
-/seeho-craft/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
-/seeho-craft/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
-/seeho-craft/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
-/seeho-craft/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
-/seeho-craft/target/maven-archiver/pom.properties
+/seeho-craft/target/*
+/seeho-aurora/seeho-web-test/target/*
