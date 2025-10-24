@@ -72,9 +72,6 @@ seeho/
 ├─ pom.xml                        # Parent POM: dependencies, plugins, version alignment
 │                                # 父级 POM：依赖、插件、版本统一管理
 │
-├─ seeho-bom/                     # (Optional) BOM: version control
-│                                # 可选：BOM 模块用于版本管理
-│
 ├─ seeho-starters/                # Public starters 公共组件封装
 │  ├─ starter-cache-redis/        # Cache & distributed lock 缓存与分布式锁
 │  ├─ starter-web/                # Web abstraction (exception / interceptors)
@@ -86,8 +83,8 @@ seeho/
 ├─ seeho-sso/                     # 🔐 Auth Center (OAuth2 / JWT / SSO)
 │                                # 🔐 统一认证中心：OAuth2 登录、JWT、SSO
 │
-├─ seeho-aurora-api/              # 🌈 API / BFF layer
-│                                # 🌈 API/BFF 层（前端适配层）
+├─ seeho-aurora/              # 🌈 API / BFF layer  # 🌈 API/BFF 层（前端适配层）
+│           └── seeho-web-test  #web test for starting applicaton
 ├─ seeho-core-app/                # ⚙️ Application layer
 │                                # ⚙️ 应用层（用例编排、事务控制）
 ├─ seeho-core-domain/             # 🧩 Domain layer
@@ -102,6 +99,15 @@ seeho/
 ├─ seeho-canon/                   # 📘 Constants & enums
 │                                # 📘 常量、枚举、状态机定义
 │
+├── seeho-infra              ← 平台与基础设施模块（新增）
+│   ├── seeho-cicd           ← 持续集成 / Jenkins Pipeline 模块
+│   ├── seeho-config         ← Nacos 配置与注册中心模块
+│   ├── seeho-observability  ← 可观测性模块 (Tracing / Metrics / Logging)
+│   │   ├── seeho-metrics    ← Prometheus + Grafana 集成
+│   │   ├── seeho-logging    ← ELK Stack 适配
+│   │   └── seeho-tracing    ← SkyWalking / Zipkin
+│   └── seeho-gateway        ← 统一API网关（可选）
+│ 
 └─ docs/                          # 📄 Documentation & architecture diagrams
                                  # 📄 文档与架构设计说明
 

@@ -1,0 +1,51 @@
+# 通用运行配置，不依赖环境
+server:
+  port: 8081
+  servlet:
+    encoding:
+      force: true
+    session:
+      tracking-modes: cookie
+spring:
+  application:
+    name: seeho-service-test
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace: ${NACOS_NAMESPACE}
+        group: ${NACOS_GROUP}
+      config:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace:  ${NACOS_NAMESPACE}
+        group: ${NACOS_GROUP}
+        file-extension: yaml
+        refresh-enabled: true
+      # 按顺序加载配置文件：common.yaml > 当前服务配置
+      extension-configs:
+        - data-id: common.yaml
+          group: ${NACOS_GROUP}
+          refresh: true
+feign:
+  circuitbreaker:
+    enabled: true
+  sentinel:
+    enabled: true
+  hystrix:
+    enabled: false
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 10000
+  compression:
+    request:
+      enabled: true
+      min-request-size: 2048
+      mime-types: text/xml,application/xml,application/json
+    response:
+      enabled: true
