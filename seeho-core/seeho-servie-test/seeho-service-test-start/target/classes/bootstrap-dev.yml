@@ -1,0 +1,17 @@
+DB_NAME: seeho_test_service
+
+NACOS_SERVER_ADDR: 192.168.3.11:8848
+NACOS_NAMESPACE: 86121f89-3905-4b1c-9dc7-17aa6ace4953
+NACOS_GROUP: SEEHO_GROUP
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace: ${NACOS_NAMESPACE}
+        group: ${NACOS_GROUP}
+      config:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace: ${NACOS_NAMESPACE}
+        group: ${NACOS_GROUP}

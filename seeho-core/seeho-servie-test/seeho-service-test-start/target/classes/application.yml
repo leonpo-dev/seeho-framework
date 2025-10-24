@@ -10,17 +10,6 @@ spring:
   application:
     name: seeho-service-test
   cloud:
-    nacos:
-      discovery:
-        server-addr: ${NACOS_SERVER_ADDR}
-        namespace: ${NACOS_NAMESPACE}
-        group: ${NACOS_GROUP}
-      config:
-        server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        namespace: ${spring.cloud.nacos.discovery.namespace}
-        group: ${NACOS_GROUP}
-        file-extension: yaml
-        refresh-enabled: true
       # 按顺序加载配置文件：common.yaml > 当前服务配置
       extension-configs:
         - data-id: common.yaml
