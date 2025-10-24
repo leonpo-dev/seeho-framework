@@ -12,7 +12,7 @@
     <artifactId>seeho-core</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>seeho-servie-test</module>
+        <module>seeho-service-test</module>
     </modules>
 
 </project>

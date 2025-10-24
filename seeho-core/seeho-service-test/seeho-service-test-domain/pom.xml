@@ -5,33 +5,34 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.seeho</groupId>
-        <artifactId>seeho</artifactId>
+        <artifactId>seeho-service-test</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>seeho-aurora</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>seeho-web-test</module>
-    </modules>
+    <artifactId>seeho-service-test-domain</artifactId>
 
     <properties>
-        <seeho.core.version>1.0.0-SNAPSHOT</seeho.core.version>
-        <craft.version>1.0.0-SNAPSHOT</craft.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.seeho</groupId>
-            <artifactId>seeho-core</artifactId>
-            <version>${seeho.core.version}</version>
+            <artifactId>seeho-service-test-start</artifactId>
+            <version>${test.start.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.seeho</groupId>
-            <artifactId>seeho-craft</artifactId>
-            <version>${craft.version}</version>
+            <artifactId>seeho-service-test-facade</artifactId>
+            <version>${test.facade.version}</version>
         </dependency>
+
+
     </dependencies>
 
 </project>
