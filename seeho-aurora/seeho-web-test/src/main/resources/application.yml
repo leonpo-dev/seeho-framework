@@ -6,9 +6,6 @@ server:
       force: true
       session:
         tracking-modes: cookie
-spring:
-  application:
-    name: seeho-web-test
 #web配置
 management:
   endpoints:

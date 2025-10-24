@@ -18,6 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <seeho.craft.version>1.0.0-SNAPSHOT</seeho.craft.version>
+        <service.test.facade>1.0.0-SNAPSHOT</service.test.facade>
     </properties>
 
     <dependencies>
@@ -55,6 +56,11 @@
             <groupId>com.seeho</groupId>
             <artifactId>seeho-craft</artifactId>
             <version>${seeho.craft.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.seeho</groupId>
+            <artifactId>seeho-service-test-facade</artifactId>
+            <version>${service.test.facade}</version>
         </dependency>
     </dependencies>
 

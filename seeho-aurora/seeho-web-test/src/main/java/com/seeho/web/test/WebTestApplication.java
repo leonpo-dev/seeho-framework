@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {
         "com.seeho.web.test",
-        "com.seeho.serive.test.facade"
+        "com.seeho.service.test"
 })
 @SpringBootApplication
 public class WebTestApplication {
