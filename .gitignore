@@ -26,3 +26,4 @@ replay_pid*
 /seeho-craft/target/*
 /seeho-aurora/seeho-web-test/target/*
 /seeho-service-test.iml
+/seeho-core/seeho-service-test/.idea/*
