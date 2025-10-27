@@ -15,6 +15,7 @@
         <module>seeho-service-test-start</module>
         <module>seeho-service-test-domain</module>
         <module>seeho-service-test-facade</module>
+        <module>seeho-service-test-persistence</module>
     </modules>
 
     <properties>

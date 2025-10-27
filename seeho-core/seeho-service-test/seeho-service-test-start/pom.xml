@@ -19,9 +19,27 @@
 
         <seeho.craft.version>1.0.0-SNAPSHOT</seeho.craft.version>
         <service.test.facade>1.0.0-SNAPSHOT</service.test.facade>
+        <service.test.persistence>1.0.0-SNAPSHOT</service.test.persistence>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.seeho</groupId>
+            <artifactId>seeho-craft</artifactId>
+            <version>${seeho.craft.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.seeho</groupId>
+            <artifactId>seeho-service-test-facade</artifactId>
+            <version>${service.test.facade}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.seeho</groupId>
+            <artifactId>seeho-service-test-persistence</artifactId>
+            <version>${service.test.persistence}</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -53,15 +71,17 @@
         </dependency>
 
         <dependency>
-            <groupId>com.seeho</groupId>
-            <artifactId>seeho-craft</artifactId>
-            <version>${seeho.craft.version}</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
         </dependency>
+
+        <!-- 模板引擎（Velocity 或 Freemarker 任选一个） -->
         <dependency>
-            <groupId>com.seeho</groupId>
-            <artifactId>seeho-service-test-facade</artifactId>
-            <version>${service.test.facade}</version>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
         </dependency>
+
+
     </dependencies>
 
 </project>
