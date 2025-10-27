@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,54 +13,69 @@ import java.util.Map;
  */
 public class CleanMyBatisPlusGenerator {
     public static void main(String[] args) {
+        // ---- need to be modified according to your database ----
+        String dbSourceUrl = "jdbc:mysql://localhost:3306/three_p_data?useSSL=false&serverTimezone=Asia/Shanghai";
+        String dbUsername = "root";
+        String dbPassword = "5tgb^YHN.";
+
         String projectPath = System.getProperty("user.dir");
 
-        String package_module = "seeho.service.test.persistence";
+        // the next path need to be modified according to your project structure
+        // ------------ start ------------
+        String package_module = "seeho-service-test-persistence";
+        String basePackage = "/src/main/java/com/seeho/service/test/persistence/";
+        //------------ end ------------
+
+        String filePerPath = projectPath + "/" + package_module + basePackage;
+
+        String entryPath = filePerPath + "po";
+        String mapperPath = filePerPath + "mapper";
+        String mapperXmlPath = filePerPath + "/src/main/resources/mapper";
+        String servicePath = filePerPath + "IService";
+        String serviceImplPath = filePerPath + "IService/impl";
 
 
-        String entryPath = projectPath +package_module+ "/src/main/java/com/seeho/service/test/persistence/po";
-        String mapperPath = projectPath +package_module+ "/src/main/java/com/seeho/service/test/persistence/mapper";
-        String mapperXmlPath = projectPath + "/src/main/resources/mapper";
-        String servicePath = projectPath +package_module+ "/src/main/java/com/seeho/service/test/persistence/IService";
-        String serviceImplPath = projectPath +package_module+ "/src/main/java/com/seeho/service/test/persistence/IService/impl";
 
-        Map<OutputFile,String> pathInfoMap = new HashMap<>();
+        Map<OutputFile, String> pathInfoMap = new HashMap<>();
         pathInfoMap.put(OutputFile.entity, entryPath);
         pathInfoMap.put(OutputFile.mapper, mapperPath);
         pathInfoMap.put(OutputFile.xml, mapperXmlPath);
         pathInfoMap.put(OutputFile.service, servicePath);
         pathInfoMap.put(OutputFile.serviceImpl, serviceImplPath);
 
-
-
-        // /Users/guanyf/data/leonpo/seeho-framework/seeho-core/seeho-service-test/src/main/java/com/seeho/service/test/persistence/mapper
-        // /Users/guanyf/data/leonpo/seeho-framework/seeho-core/seeho-service-test/seeho-service-test-persistence/src/main/java/com/seeho/service/test/persistence/mapper
-
         FastAutoGenerator.create(
-                        "jdbc:mysql://localhost:3306/three_p_data?useSSL=false&serverTimezone=Asia/Shanghai",
-                        "root",
-                        "5tgb^YHN.")
+                        dbSourceUrl,
+                        dbUsername,
+                        dbPassword)
                 .globalConfig(builder -> builder
-                        .author("Leonpo")
-                        .disableOpenDir()
-                        .commentDate("yyyy-MM-dd")
+                                .author("Leonpo")
+                                .disableOpenDir()
+                                .commentDate("yyyy-MM-dd")
                         //.outputDir(projectPath + "/src/main/java/com/seeho/service/test/persistence/mapper")
                 )
                 .packageConfig(builder -> builder
-                        .parent("com.seeho")
-                        .moduleName("seeho-service-test-persistence") // 可选
+                        .parent("com.seeho.service.test.persistence")
+                        .entity("po")
+                        .mapper("mapper")
+                        .service("IService")
+                        .serviceImpl("IService.impl")
                         .pathInfo(pathInfoMap)
                 )
                 .strategyConfig(builder -> builder
-                        //.addInclude("three_p_data")
+                        //.addInclude("three_p_data") // if you need only generate this table, write this line
                         .addTablePrefix("")
-                        .entityBuilder().enableLombok()
+                        .entityBuilder().enableLombok().formatFileName("%sPO").enableFileOverride()
+
                         .mapperBuilder()
-                        .enableBaseResultMap()
-                        .enableBaseColumnList()
+                        .enableFileOverride()
+                        .superClass("com.baomidou.mybatisplus.core.mapper.BaseMapper")
                         .formatMapperFileName("%sMapper")
                         .formatXmlFileName("%sMapper")
+                        .enableBaseResultMap()
+                        .enableBaseColumnList()
+
                         .serviceBuilder()
+                        .enableFileOverride()
                         .formatServiceFileName("%sService")
                         .formatServiceImplFileName("%sServiceImpl")
                         .superServiceClass("com.baomidou.mybatisplus.extension.service.IService")
