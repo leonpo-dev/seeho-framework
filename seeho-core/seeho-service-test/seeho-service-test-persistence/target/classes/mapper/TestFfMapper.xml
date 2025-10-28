@@ -6,11 +6,13 @@
     <resultMap id="BaseResultMap" type="com.seeho.service.test.persistence.po.TestFfPO">
         <id column="user_id" property="userId" />
         <result column="user_name" property="userName" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        user_id, user_name
+        user_id, user_name, create_time, update_time
     </sql>
 
 </mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seeho.service.test.persistence.mapper.SendaBillsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.seeho.service.test.persistence.po.SendaBillsPO">
+        <id column="id" property="id" />
+        <result column="bill_code" property="billCode" />
+        <result column="is_bag" property="isBag" />
+        <result column="bag_code" property="bagCode" />
+        <result column="rec_time" property="recTime" />
+        <result column="rec_site_id" property="recSiteId" />
+        <result column="rec_info" property="recInfo" />
+        <result column="come_info" property="comeInfo" />
+        <result column="scan_time" property="scanTime" />
+        <result column="scan_site_id" property="scanSiteId" />
+        <result column="scan_user_id" property="scanUserId" />
+        <result column="area_id" property="areaId" />
+        <result column="customer_id" property="customerId" />
+        <result column="account_user_id" property="accountUserId" />
+        <result column="bill_date" property="billDate" />
+        <result column="bill_time" property="billTime" />
+        <result column="rec_weight" property="recWeight" />
+        <result column="center_weight" property="centerWeight" />
+        <result column="account_weight" property="accountWeight" />
+        <result column="first_weight_time" property="firstWeightTime" />
+        <result column="disp_prov_id" property="dispProvId" />
+        <result column="disp_city_id" property="dispCityId" />
+        <result column="disp_source" property="dispSource" />
+        <result column="bill_use_site_id" property="billUseSiteId" />
+        <result column="bill_provide_man_id" property="billProvideManId" />
+        <result column="bill_provide_man_name" property="billProvideManName" />
+        <result column="bill_provide_type" property="billProvideType" />
+        <result column="is_offline_ele" property="isOfflineEle" />
+        <result column="sz_center_fee" property="szCenterFee" />
+        <result column="sz_bill_fee" property="szBillFee" />
+        <result column="oper_add_fee" property="operAddFee" />
+        <result column="common_fee" property="commonFee" />
+        <result column="avg_weight_fee" property="avgWeightFee" />
+        <result column="avg_add_weight_fee" property="avgAddWeightFee" />
+        <result column="avg_status" property="avgStatus" />
+        <result column="user_royalty" property="userRoyalty" />
+        <result column="two_level_fee" property="twoLevelFee" />
+        <result column="bill_subsidy" property="billSubsidy" />
+        <result column="disp_fee" property="dispFee" />
+        <result column="basic_disp_fee" property="basicDispFee" />
+        <result column="disp_add_fee" property="dispAddFee" />
+        <result column="bill_cost" property="billCost" />
+        <result column="center_rec_fee" property="centerRecFee" />
+        <result column="center_rec_count" property="centerRecCount" />
+        <result column="type" property="type" />
+        <result column="bill_status" property="billStatus" />
+        <result column="class_type" property="classType" />
+        <result column="goods_type" property="goodsType" />
+        <result column="bill_type" property="billType" />
+        <result column="return_status" property="returnStatus" />
+        <result column="other_time" property="otherTime" />
+        <result column="data_source" property="dataSource" />
+        <result column="sign_time" property="signTime" />
+        <result column="sign_site_id" property="signSiteId" />
+        <result column="sign_status" property="signStatus" />
+        <result column="disp_time" property="dispTime" />
+        <result column="disp_site_id" property="dispSiteId" />
+        <result column="disp_weight" property="dispWeight" />
+        <result column="first_center_oper_time" property="firstCenterOperTime" />
+        <result column="first_center_oper_site_id" property="firstCenterOperSiteId" />
+        <result column="first_center_next_id" property="firstCenterNextId" />
+        <result column="hexiao_man" property="hexiaoMan" />
+        <result column="hexiao_time" property="hexiaoTime" />
+        <result column="hexiao_fee" property="hexiaoFee" />
+        <result column="fee_modifie_time" property="feeModifieTime" />
+        <result column="lock_status" property="lockStatus" />
+        <result column="lock_man" property="lockMan" />
+        <result column="lock_time" property="lockTime" />
+        <result column="order_source" property="orderSource" />
+        <result column="user_data_source" property="userDataSource" />
+        <result column="order_code" property="orderCode" />
+        <result column="order_partner_id" property="orderPartnerId" />
+        <result column="partner_trade_id" property="partnerTradeId" />
+        <result column="parcel_weight" property="parcelWeight" />
+        <result column="bill_version" property="billVersion" />
+        <result column="sign_disp_fee_version" property="signDispFeeVersion" />
+        <result column="center_rec_fee_version" property="centerRecFeeVersion" />
+        <result column="remark" property="remark" />
+        <result column="editor" property="editor" />
+        <result column="msg_type" property="msgType" />
+        <result column="fine" property="fine" />
+        <result column="fine_version" property="fineVersion" />
+        <result column="bill_provide_diff" property="billProvideDiff" />
+        <result column="goods_payment_type" property="goodsPaymentType" />
+        <result column="value_added_type" property="valueAddedType" />
+        <result column="sender_info" property="senderInfo" />
+        <result column="consignee_info" property="consigneeInfo" />
+        <result column="reco_order_time" property="recoOrderTime" />
+        <result column="center_come_info" property="centerComeInfo" />
+        <result column="scan_man_id" property="scanManId" />
+        <result column="hexiao_user_id" property="hexiaoUserId" />
+        <result column="account_water" property="accountWater" />
+        <result column="quote_object_id" property="quoteObjectId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, bill_code, is_bag, bag_code, rec_time, rec_site_id, rec_info, come_info, scan_time, scan_site_id, scan_user_id, area_id, customer_id, account_user_id, bill_date, bill_time, rec_weight, center_weight, account_weight, first_weight_time, disp_prov_id, disp_city_id, disp_source, bill_use_site_id, bill_provide_man_id, bill_provide_man_name, bill_provide_type, is_offline_ele, sz_center_fee, sz_bill_fee, oper_add_fee, common_fee, avg_weight_fee, avg_add_weight_fee, avg_status, user_royalty, two_level_fee, bill_subsidy, disp_fee, basic_disp_fee, disp_add_fee, bill_cost, center_rec_fee, center_rec_count, type, bill_status, class_type, goods_type, bill_type, return_status, other_time, data_source, sign_time, sign_site_id, sign_status, disp_time, disp_site_id, disp_weight, first_center_oper_time, first_center_oper_site_id, first_center_next_id, hexiao_man, hexiao_time, hexiao_fee, fee_modifie_time, lock_status, lock_man, lock_time, order_source, user_data_source, order_code, order_partner_id, partner_trade_id, parcel_weight, bill_version, sign_disp_fee_version, center_rec_fee_version, remark, editor, msg_type, fine, fine_version, bill_provide_diff, goods_payment_type, value_added_type, sender_info, consignee_info, reco_order_time, center_come_info, scan_man_id, hexiao_user_id, account_water, quote_object_id
+    </sql>
+
+</mapper>
