@@ -22,8 +22,6 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <test.facade.version>1.0.0-SNAPSHOT</test.facade.version>
-        <test.start.version>1.0.0-SNAPSHOT</test.start.version>
     </properties>
 
 
@@ -31,6 +29,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.seeho</groupId>
+            <artifactId>seeho-craft</artifactId>
         </dependency>
     </dependencies>
 

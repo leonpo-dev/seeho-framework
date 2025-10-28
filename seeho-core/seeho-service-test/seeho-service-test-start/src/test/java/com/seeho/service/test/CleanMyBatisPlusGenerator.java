@@ -14,9 +14,9 @@ import java.util.Map;
 public class CleanMyBatisPlusGenerator {
     public static void main(String[] args) {
         // ---- need to be modified according to your database ----
-        String dbSourceUrl = "jdbc:mysql://localhost:3306/three_p_data?useSSL=false&serverTimezone=Asia/Shanghai";
+        String dbSourceUrl = "jdbc:mysql://192.168.3.60:3306/seeho_test_service?useSSL=false&serverTimezone=Asia/Shanghai";
         String dbUsername = "root";
-        String dbPassword = "5tgb^YHN.";
+        String dbPassword = "root321";
 
         String projectPath = System.getProperty("user.dir");
 
@@ -30,10 +30,10 @@ public class CleanMyBatisPlusGenerator {
 
         String entryPath = filePerPath + "po";
         String mapperPath = filePerPath + "mapper";
-        String mapperXmlPath = filePerPath + "/src/main/resources/mapper";
+
+        String mapperXmlPath = projectPath + "/" + package_module + "/src/main/resources/mapper";
         String servicePath = filePerPath + "IService";
         String serviceImplPath = filePerPath + "IService/impl";
-
 
 
         Map<OutputFile, String> pathInfoMap = new HashMap<>();
@@ -47,6 +47,7 @@ public class CleanMyBatisPlusGenerator {
                         dbSourceUrl,
                         dbUsername,
                         dbPassword)
+                .templateEngine(new VelocityTemplateEngine())
                 .globalConfig(builder -> builder
                                 .author("Leonpo")
                                 .disableOpenDir()
@@ -68,6 +69,7 @@ public class CleanMyBatisPlusGenerator {
 
                         .mapperBuilder()
                         .enableFileOverride()
+                        .mapperAnnotation(org.apache.ibatis.annotations.Mapper.class)//加上@mapper注解
                         .superClass("com.baomidou.mybatisplus.core.mapper.BaseMapper")
                         .formatMapperFileName("%sMapper")
                         .formatXmlFileName("%sMapper")

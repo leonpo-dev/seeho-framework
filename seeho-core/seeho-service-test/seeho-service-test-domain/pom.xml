@@ -22,17 +22,9 @@
     <dependencies>
         <dependency>
             <groupId>com.seeho</groupId>
-            <artifactId>seeho-service-test-start</artifactId>
-            <version>${test.start.version}</version>
+            <artifactId>seeho-service-test-persistence</artifactId>
+            <version>${project.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.seeho</groupId>
-            <artifactId>seeho-service-test-facade</artifactId>
-            <version>${test.facade.version}</version>
-        </dependency>
-
-
     </dependencies>
 
 </project>

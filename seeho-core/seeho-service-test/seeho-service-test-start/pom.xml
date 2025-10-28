@@ -31,14 +31,8 @@
         <dependency>
             <groupId>com.seeho</groupId>
             <artifactId>seeho-service-test-facade</artifactId>
-            <version>${service.test.facade}</version>
+            <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.seeho</groupId>
-            <artifactId>seeho-service-test-persistence</artifactId>
-            <version>${service.test.persistence}</version>
-        </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -74,6 +68,26 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis-spring</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+        </dependency>
+
 
         <!-- 模板引擎（Velocity 或 Freemarker 任选一个） -->
         <dependency>

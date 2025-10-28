@@ -1,80 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- ========== 项目坐标（父POM，仅做统一版本/依赖/插件管理） ========== -->
     <groupId>com.seeho</groupId>
     <artifactId>seeho</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>seeho</name>
-    <description>Unified dependency plugin management for Seeho microservices</description>
+    <description>Unified dependency  plugin management for Seeho microservices</description>
+
     <modules>
         <module>seeho-craft</module>
         <module>seeho-aurora</module>
         <module>seeho-core</module>
     </modules>
 
-    <!-- ========== 全局属性（版本统一在这里改） ========== -->
     <properties>
-        <!-- JDK & 编码 -->
         <java.version>17</java.version>
-        <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- 平台 / BOM 版本 -->
+        <!-- 平台 BOM -->
         <spring.boot.version>3.2.12</spring.boot.version>
-        <spring.cloud.version>2023.0.3</spring.cloud.version> <!-- Leyton SR3 -->
+        <spring.cloud.version>2023.0.3</spring.cloud.version>
         <spring.cloud.alibaba.version>2023.0.1.0</spring.cloud.alibaba.version>
-       <!-- <spring.boot.start.web.version>3.5.6</spring.boot.start.web.version>
-        <spring.cloud.starter.openfeign>4.3.0</spring.cloud.starter.openfeign>
-        <spring.cloud.starter.loadbalancer>4.3.0</spring.cloud.starter.loadbalancer>-->
+
+        <!-- 工具 & 业务依赖版本 -->
         <lombok.version>1.18.32</lombok.version>
-
-        <!-- 数据持久层 -->
-        <mybatis.plus.version>3.5.12</mybatis.plus.version>
         <mysql.driver.version>8.0.33</mysql.driver.version>
-
-        <!-- 中间件 -->
+        <mybatis.plus.version>3.5.12</mybatis.plus.version>
+        <mybatis.plus.generator.version>3.5.7</mybatis.plus.generator.version>
         <redisson.version>3.51.0</redisson.version>
         <seata.version>2.0.0</seata.version>
         <xxl.job.version>2.4.0</xxl.job.version>
-
-        <!-- 观测与追踪（如需固定可单独提升到此处） -->
         <zipkin.reporter.version>2.16.3</zipkin.reporter.version>
-
-        <!-- 安全鉴权 -->
         <jjwt.version>0.11.5</jjwt.version>
+        <velocity.engine.core.version>2.3</velocity.engine.core.version>
 
-        <!-- 插件版本 -->
+        <mybatis.spring.version>3.0.3</mybatis.spring.version>
+        <mybatis.version>3.5.16</mybatis.version>
+
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
         <spring.boot.maven.plugin.version>${spring.boot.version}</spring.boot.maven.plugin.version>
 
-        <mybatis.plus.generator.version>3.5.7</mybatis.plus.generator.version>
-        <mybatis.plus.bom.version>3.5.12</mybatis.plus.bom.version>
-        <velocity.engine.core.version>2.3</velocity.engine.core.version>
         <craft.version>1.0.0-SNAPSHOT</craft.version>
     </properties>
 
-
-    <!-- ========== 依赖管理区（只在这里定版本；子模块不再写版本） ========== -->
+    <!-- ✅ 依赖版本统一管理 -->
     <dependencyManagement>
         <dependencies>
 
-            <!-- 二方包版本控制 -->
-            <!-- 公共模块版本 -->
+            <!-- 项目内部二方包 -->
             <dependency>
                 <groupId>com.seeho</groupId>
                 <artifactId>seeho-craft</artifactId>
                 <version>${craft.version}</version>
             </dependency>
 
-            <!-- ********** A. 平台 / BOM（必须最先导入） ********** -->
-            <!-- Spring Boot BOM：管理 spring-boot-starter* 等版本 -->
+            <!-- A. 平台 BOM -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -83,7 +68,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Spring Cloud BOM：管理 OpenFeign、Gateway、LoadBalancer 等 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -92,7 +76,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Spring Cloud Alibaba BOM：管理 Nacos、RocketMQ、Sentinel 等 -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
@@ -100,6 +83,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- B. 开发辅助 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -107,35 +92,25 @@
                 <scope>provided</scope>
             </dependency>
 
-            <!-- ********** B. Web & 网关 / 通信 ********** -->
-            <!-- 说明：这些 starter 的具体版本由 BOM 管理，这里只列出坐标，子模块直接使用即可。 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-gateway</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-openfeign</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-            </dependency>
-
-
-            <!-- ********** C. 服务注册/配置（来自 Spring Cloud Alibaba BOM） ********** -->
-
-
-            <!-- ********** D. 数据持久层（统一在此集中管理版本） ********** -->
-            <!-- MyBatis-Plus（需手动定版本） -->
+            <!-- C. 数据库层 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis.plus.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis-spring</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis-spring-boot-starter</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -143,62 +118,53 @@
                 <version>${mybatis.plus.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-bom</artifactId>
-                <version>${mybatis.plus.bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- MySQL 驱动（需手动定版本） -->
-            <dependency>
                 <groupId>com.mysql</groupId>
                 <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql.driver.version}</version>
             </dependency>
-            <!-- 数据源（HikariCP 已由 Spring Boot 管理，如需锁版本可在此添加） -->
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis.spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
 
 
-            <!-- ********** E. 中间件（缓存/消息/任务/分布式事务） ********** -->
-            <!-- Redis（Spring Data Redis 由 Boot BOM 管理），若用 Redisson 则固定版本 -->
+            <!-- D. 中间件 -->
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.version}</version>
             </dependency>
-            <!-- RocketMQ（由 Spring Cloud Alibaba BOM 管理） -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
             </dependency>
-            <!-- XXL-Job（需手动定版本） -->
             <dependency>
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl.job.version}</version>
             </dependency>
-            <!-- Seata（需手动定版本） -->
             <dependency>
                 <groupId>io.seata</groupId>
                 <artifactId>seata-spring-boot-starter</artifactId>
                 <version>${seata.version}</version>
             </dependency>
 
-
-            <!-- ********** F. 观测 & 追踪（链路追踪、Zipkin 报告） ********** -->
-            <!-- Micrometer Tracing 与 Brave/OTel 通常由 Boot 管理；若要固定 Zipkin 报告器版本： -->
+            <!-- E. 链路追踪 -->
             <dependency>
                 <groupId>io.zipkin.reporter2</groupId>
                 <artifactId>zipkin-reporter-brave</artifactId>
                 <version>${zipkin.reporter.version}</version>
             </dependency>
 
-
-            <!-- ********** G. 安全 & 鉴权（JWT等） ********** -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-            </dependency>
-            <!-- JJWT 建议三件套（版本需手动管理） -->
+            <!-- F. 安全鉴权 -->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
@@ -217,16 +183,12 @@
                 <scope>runtime</scope>
             </dependency>
 
-            <!-- -->
+            <!-- G. 工具 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${mybatis.plus.generator.version}</version>
             </dependency>
-
-
-
-            <!-- 模板引擎（Velocity 或 Freemarker 任选一个） -->
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
@@ -236,56 +198,32 @@
         </dependencies>
     </dependencyManagement>
 
-
-    <!-- ========== 插件管理（统一插件版本，子模块直接引用） ========== -->
     <build>
         <pluginManagement>
             <plugins>
-
-                <!-- 编译插件：强制使用 release=17，避免不同 JDK 造成的 class 版本差异 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven.compiler.plugin.version}</version>
                     <configuration>
-                        <release>${maven.compiler.release}</release>
+                        <release>${java.version}</release>
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                 </plugin>
 
-                <!-- 单元测试插件 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.plugin.version}</version>
                 </plugin>
 
-                <!-- Spring Boot 打包插件（各微服务子模块用它来构建可执行 JAR） -->
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring.boot.maven.plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
-
             </plugins>
         </pluginManagement>
     </build>
-
-    <!-- ========== 统一仓库（如需私服可在这里改；默认中央仓库即可） ========== -->
-    <!--
-    <repositories>
-      <repository>
-        <id>central</id>
-        <url>https://repo1.maven.org/maven2/</url>
-      </repository>
-    </repositories>
-    -->
 
 </project>

@@ -15,4 +15,11 @@
         <module>seeho-service-test</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.seeho</groupId>
+            <artifactId>seeho-craft</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
