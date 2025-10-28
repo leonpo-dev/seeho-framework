@@ -18,7 +18,7 @@ spring:
         file-extension: yml
         refresh-enabled: true
         extension-configs:
-            -data-id: common-dev.yml  # 共享配置文件名
+          - data-id: common-dev.yml  # 共享配置文件名
             group: ${spring.cloud.nacos.discovery.group}
             refresh: true  # 支持动态刷新
 # 通用运行配置，不依赖环境
