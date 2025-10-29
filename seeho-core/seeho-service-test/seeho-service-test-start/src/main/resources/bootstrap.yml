@@ -34,3 +34,6 @@ logging:
   level:
     com.alibaba.cloud.nacos: DEBUG
     org.springframework.cloud.bootstrap: DEBUG
+    com.baomidou.mybatisplus: DEBUG # MyBatis-Plus 核心 SQL 执行日志（包含格式化 SQL）
+    org.apache.ibatis: DEBUG
+    com.seeho.service.test.persistence.mapper: DEBUG

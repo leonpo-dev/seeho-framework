@@ -29,6 +29,19 @@
             <groupId>com.seeho</groupId>
             <artifactId>seeho-service-test-domain</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <!-- 只排除 JDBC starter（服务端实现层依赖） -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-jdbc</artifactId>
+                </exclusion>
+                <!-- 只排除 MyBatis（服务端持久层依赖） -->
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                </exclusion>
+                <!-- 🔥 关键：删除对 mysql-connector-j 的排除，保留驱动依赖 -->
+            </exclusions>
         </dependency>
     </dependencies>
 

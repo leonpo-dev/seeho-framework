@@ -18,7 +18,9 @@ public class BillQueryServiceImpl implements BillQueryService {
 
     @Override
     public SendaBillsPO selectBillByBillCode(String billCode) {
-        return sendaBillsService.getOne(sendaBillsService.lambdaQuery()
-                .eq(SendaBillsPO::getBillCode, billCode));
+        return sendaBillsService.lambdaQuery()
+                .eq(SendaBillsPO::getBillCode, billCode)
+                .one();
+
     }
 }

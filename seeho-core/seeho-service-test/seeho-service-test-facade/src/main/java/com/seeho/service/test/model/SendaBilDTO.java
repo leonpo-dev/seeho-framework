@@ -1,7 +1,5 @@
 package com.seeho.service.test.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +21,6 @@ public class SendaBilDTO {
     /**
      * 主键，自增
      */
-    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**

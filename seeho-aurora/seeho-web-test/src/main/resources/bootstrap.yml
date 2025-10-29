@@ -1,13 +1,31 @@
 spring:
   application:
     name: seeho-web-test
+  profiles:
+    active: ${ENV}  # 环境标识，默认 dev，部署时通过系统变量 ENV 切换
   cloud:
+    bootstrap:
+      enabled: true
     nacos:
       discovery:
-        server-addr: ${NACOS_SERVER_ADDR}
-        namespace: ${NACOS_NAMESPACE}
-        group: ${NACOS_GROUP}
+        server-addr: ${NACOS_SERVER:192.168.3.11:8848}
+        namespace: ${NACOS_NAMESPACE:86121f89-3905-4b1c-9dc7-17aa6ace4953}
+        group: ${NACOS_GROUP:SEEHO_GROUP}
       config:
-        server-addr: ${NACOS_SERVER_ADDR}
-        namespace: ${NACOS_NAMESPACE}
-        group: ${NACOS_GROUP}
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        group: ${spring.cloud.nacos.discovery.group}
+        file-extension: yml
+# 通用运行配置，不依赖环境
+server:
+  port: 8082
+  servlet:
+    encoding:
+      force: true
+    session:
+      tracking-modes: cookie
+
+logging:
+  level:
+    com.alibaba.cloud.nacos: DEBUG
+    org.springframework.cloud.bootstrap: DEBUG
